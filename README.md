@@ -120,7 +120,7 @@ npm run dev
 ```
 
 Acesse a interface web em:
-🌐 [http://localhost:3000](http://localhost:3000)
+🌐 [http://localhost:5173](http://localhost:5173)
 
 ---
 
