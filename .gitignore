@@ -1,0 +1,26 @@
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__
+
+# Virtual environment
+.venv/
+
+# SQLite database file
+database/
+
+# Log files
+log/
+
+# Model folder and its compiled files
+model/__pycache__/
+
+# Schemas folder and its compiled files
+schemas/__pycache__/
+
+# IDE specific files (se estiver usando VSCode, PyCharm, etc.)
+.vscode/
+.idea/
+
+# Environment configuration (ex: .env files)
+.env
