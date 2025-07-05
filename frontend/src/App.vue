@@ -10,7 +10,7 @@
     </div>
     <div class="itens" :style="{ transform: `translateX(calc(-${controls * 100}% - ${controls}*20px))` }">
       <div class="item">
-        Formato do chapéu
+        <h3> Formato do chapéu</h3>
         <div class="options">
           <div class="option" :class="{ active: output['capShape'] == i.value }" v-for="i in formats" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('capShape', i.value)"><span>
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="item">
-        Textura da superfície
+        <h3> Textura da superfície</h3>
         <div class="options">
           <div class="option" :class="{ active: output['capSurface'] == i.value }" v-for="i in surfaces" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('capSurface', i.value)"><span>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="item">
-        Cor do chapéu
+        <h3> Cor do chapéu </h3>
         <div class="options">
           <div class="option colors" :class="{ active: output['capColor'] == i.value }" v-for="i in colors"
             :key="i.name" :style="{ backgroundImage: `url(./filter.png)`, backgroundColor: i.name, }"
@@ -42,7 +42,10 @@
         </div>
       </div>
       <div class="item">
-        Presença de manchas<div class="options bruises">
+        <h3>
+          Presença de manchas
+        </h3>
+        <div class="options bruises">
           <div class="option" :class="{ active: output['bruises'] == i.value }" v-for="i in bruises" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('bruises', i.value)">
             <span>
@@ -52,7 +55,8 @@
         </div>
       </div>
       <div class="item">
-        Odor característico<div class="options">
+        <h3>Odor característico</h3>
+        <div class="options">
           <div class="option" :class="{ active: output['odor'] == i.value }" v-for="i in odors" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('odor', i.value)">
             <span>
@@ -88,7 +92,8 @@
           O cogumelo selecionado é <strong>comestível</strong>! Aproveite sua refeição! 😋
         </div>
         <div v-else-if="p < 1">
-          Há <strong>{{ (p * 100).toFixed(0) }}%</strong> de chance do seu cogumelo ser <strong>venenoso 💀</strong>.
+          Seu cogumelo tem <strong>{{ (p * 100).toFixed(0) }}%</strong> de chance de ser <strong>venenoso
+            💀</strong>.
           <br />É
           melhor não
           arriscar!
@@ -237,6 +242,8 @@ label {
 
 body {
   background-image: url('./bg.png');
+  background-color: #0b201076;
+  background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -248,6 +255,11 @@ body {
 }
 
 h1 {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+h3 {
+  font-weight: 500;
   font-family: 'Pixelify Sans', sans-serif;
 }
 
@@ -272,7 +284,7 @@ main.container {
   flex-direction: column;
   margin-inline-start: 50vw;
   transform: translateX(-50%);
-  width: 1150px;
+  width: 1200px;
 }
 
 
@@ -281,14 +293,14 @@ main.container {
   transition: all 0.3s ease-in-out;
   display: flex;
   align-items: center;
-  max-width: 1150px;
+  max-width: 1200px;
   gap: 20px;
 }
 
 .item {
   height: -webkit-fill-available;
   height: -moz-available;
-  background-color: rgba(0, 0, 0, 0.123);
+  background-color: rgba(0, 0, 0, 0.223);
   border: 0.1px solid rgba(36, 36, 36, 0.2);
   border-top: 0.1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
@@ -314,7 +326,7 @@ main.container {
 }
 
 .option {
-  background-color: rgba(173, 173, 173, 0.1);
+  background-color: rgba(255, 255, 255, 0.597);
   backdrop-filter: blur(100px);
   background-size: cover;
   background-position: center;
@@ -383,7 +395,7 @@ main.container {
   .ind {
     position: absolute;
     top: -40px;
-    margin-left: -30px;
+    margin-left: -50px;
     width: 100px;
     height: 100px;
     background-image: url('./bell.png');
