@@ -81,7 +81,7 @@
           <label>Venenoso
           </label>
         </div>
-        <div class="ind" :style="{ left: `${(p * 100).toFixed(0)}%` }"></div>
+        <div class="ind" :class="{ loading }" :style="{ left: `${(p * 100).toFixed(0)}%` }"></div>
       </div>
       <div class="resultado">
         <div v-if="p == 0">
@@ -181,7 +181,7 @@ const previous = () => {
 };
 
 const p = ref(null);
-const loading = ref(false)
+const loading = ref(true)
 
 watch(() => output.value, async () => {
 
@@ -391,6 +391,11 @@ main.container {
     background-size: cover;
     background-position: center;
     z-index: 1;
+
+    &.loading {
+      opacity: 0.5;
+      animation: bounce 0.2s ease-in-out infinite;
+    }
   }
 }
 
@@ -400,5 +405,19 @@ main.container {
   min-height: 2rem;
   text-align: center;
   font-size: 2rem;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: rotate(5deg);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 </style>
