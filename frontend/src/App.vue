@@ -11,8 +11,8 @@
     <div class="itens" :style="{ transform: `translateX(calc(-${controls * 100}% - ${controls}*20px))` }">
       <div class="item">
         <h3> Formato do chapéu</h3>
-        <div class="options">
-          <div class="option" :class="{ active: output['capShape'] == i.value }" v-for="i in formats" :key="i.name"
+        <div class="options" :class="{ active: output.capShape }">
+          <div class="option" :class="{ active: output.capShape == i.value }" v-for="i in formats" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('capShape', i.value)"><span>
               {{ i.desc }}
             </span>
@@ -21,8 +21,8 @@
       </div>
       <div class="item">
         <h3> Textura da superfície</h3>
-        <div class="options">
-          <div class="option" :class="{ active: output['capSurface'] == i.value }" v-for="i in surfaces" :key="i.name"
+        <div class="options" :class="{ active: output.capSurface }">
+          <div class="option" :class="{ active: output.capSurface == i.value }" v-for="i in surfaces" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('capSurface', i.value)"><span>
               {{ i.desc }}
             </span>
@@ -31,9 +31,9 @@
       </div>
       <div class="item">
         <h3> Cor do chapéu </h3>
-        <div class="options">
-          <div class="option colors" :class="{ active: output['capColor'] == i.value }" v-for="i in colors"
-            :key="i.name" :style="{ backgroundImage: `url(./filter.png)`, backgroundColor: i.name, }"
+        <div class="options" :class="{ active: output.capColor }">
+          <div class="option colors" :class="{ active: output.capColor == i.value }" v-for="i in colors" :key="i.name"
+            :style="{ backgroundImage: `url(./filter.png)`, backgroundColor: i.name, }"
             @click="select('capColor', i.value)">
             <span>
               {{ i.desc }}
@@ -45,8 +45,8 @@
         <h3>
           Presença de manchas
         </h3>
-        <div class="options bruises">
-          <div class="option" :class="{ active: output['bruises'] == i.value }" v-for="i in bruises" :key="i.name"
+        <div class="options bruises" :class="{ active: output.bruises }">
+          <div class="option" :class="{ active: output.bruises == i.value }" v-for="i in bruises" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('bruises', i.value)">
             <span>
               {{ i.desc }}
@@ -56,8 +56,8 @@
       </div>
       <div class="item">
         <h3>Odor característico</h3>
-        <div class="options">
-          <div class="option" :class="{ active: output['odor'] == i.value }" v-for="i in odors" :key="i.name"
+        <div class="options" :class="{ active: output.odor }">
+          <div class="option" :class="{ active: output.odor == i.value }" v-for="i in odors" :key="i.name"
             :style="{ backgroundImage: `url(./${i.name}.png)` }" @click="select('odor', i.value)">
             <span>
               {{ i.desc }}
@@ -81,11 +81,11 @@
       </h1>
       <div class="barr">
         <div class="between">
-          <label>Comestível</label>
           <label>Venenoso
           </label>
+          <label>Comestível</label>
         </div>
-        <div class="ind" :class="{ loading }" :style="{ left: `${(p * 100).toFixed(0)}%` }"></div>
+        <div class="ind" :class="{ loading }" :style="{ left: `${((1 - p) * 100).toFixed(0)}%` }"></div>
       </div>
       <div class="resultado">
         <div v-if="p == 0">
@@ -94,9 +94,7 @@
         <div v-else-if="p < 1">
           Seu cogumelo tem <strong>{{ (p * 100).toFixed(0) }}%</strong> de chance de ser <strong>venenoso
             💀</strong>.
-          <br />É
-          melhor não
-          arriscar!
+          Não coma!
         </div>
         <div v-else>
           O seu cogumelo é <strong>venenoso</strong> 💀. Não coma!
@@ -221,8 +219,16 @@ watch(() => output.value, async () => {
 }
 
 h1 {
+  font-size: 2.75rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  letter-spacing: 2px;
+}
+
+h3 {
   margin-block: 1rem;
-  font-size: 3rem;
+  font-weight: 500;
+  font-family: 'Pixelify Sans', sans-serif;
+  letter-spacing: 3px;
 }
 
 label {
@@ -231,11 +237,12 @@ label {
   margin-top: -0.5rem;
   z-index: 1;
   font-family: 'Pixelify Sans', sans-serif;
-  color: #0b4018;
-  font-weight: 800;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 3px;
 
   &:first-of-type {
-    color: white;
+    color: #0b4018;
   }
 
 }
@@ -252,15 +259,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-h1 {
-  font-family: 'Pixelify Sans', sans-serif;
-}
-
-h3 {
-  font-weight: 500;
-  font-family: 'Pixelify Sans', sans-serif;
 }
 
 .blur {
@@ -284,10 +282,14 @@ main.container {
   flex-direction: column;
   margin-inline-start: 50vw;
   transform: translateX(-50%);
-  width: 1200px;
+  width: 1300px;
+  background-color: rgba(0, 0, 0, 0.223);
+  backdrop-filter: blur(50px);
+  border: 0.1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 0rem 3rem;
+  contain: content;
 }
-
-
 
 .itens {
   transition: all 0.3s ease-in-out;
@@ -310,7 +312,7 @@ main.container {
   text-align: center;
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 24px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   min-width: 100%;
   display: flex;
   flex-direction: column;
@@ -323,6 +325,12 @@ main.container {
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+
+  &.active {
+    .option:not(.active) {
+      opacity: 0.875;
+    }
+  }
 }
 
 .option {
@@ -363,12 +371,12 @@ main.container {
 .between {
   display: flex;
   justify-content: space-between;
-  margin-block: 20px;
+  margin-block: 1rem;
 }
 
 .barr {
   background: #1cff14;
-  background: linear-gradient(90deg, rgba(69, 100, 255, 1) 0%, rgba(87, 199, 133, 1) 32%, rgba(28, 255, 20, 1) 100%);
+  background: linear-gradient(90deg, rgba(28, 255, 20, 1) 0%, rgba(87, 199, 133, 1) 32%, rgba(69, 100, 255, 1) 100%);
   height: 20px;
   position: relative;
   margin: 40px;
@@ -377,7 +385,7 @@ main.container {
   &:after {
     content: '';
     background: #1cff14;
-    background: linear-gradient(90deg, rgba(69, 100, 255, 1) 0%, rgba(87, 199, 133, 1) 32%, rgba(28, 255, 20, 1) 100%);
+    background: linear-gradient(90deg, rgba(28, 255, 20, 1) 0%, rgba(87, 199, 133, 1) 32%, rgba(69, 100, 255, 1) 100%);
     height: 10px;
     width: calc(100% - 20px);
     position: absolute;
