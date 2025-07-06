@@ -52,7 +52,7 @@ def get_classify(query: ClassifySchemaSearch):
     odor = query.odor  
 
     # Carrega o modelo
-    modelo = joblib.load("modelo_knn_cogumelos.pkl")
+    modelo = joblib.load("best_model_mushroom.pkl")
 
     # Lista completa de atributos (exceto o alvo)
     atributos = ['cap-shape', 'cap-surface', 'cap-color', 'bruises', 'odor']

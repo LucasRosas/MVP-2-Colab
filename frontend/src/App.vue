@@ -91,8 +91,12 @@
         <div v-if="p == 0">
           O cogumelo selecionado é <strong>comestível</strong>! Aproveite sua refeição! 😋
         </div>
-        <div v-else-if="p < 1">
-          Seu cogumelo tem <strong>{{ (p * 100).toFixed(0) }}%</strong> de chance de ser <strong>venenoso
+        <div v-else-if="p <= 0.01">
+          Seu cogumelo tem <strong>{{ ((1 - p) * 100).toFixed(3) }}%</strong> de chance de ser
+          <strong>comestível</strong>. Mas é melhor confirmar com um especialista.
+        </div>
+        <div v-else-if="p <= 0.99">
+          Seu cogumelo tem <strong>{{ (p * 100).toFixed(3) }}%</strong> de chance de ser <strong>venenoso
             💀</strong>.
           Não coma!
         </div>
@@ -104,6 +108,19 @@
     </div>
     <div class="result" v-else>
       Marque as características, o resultado vai aparecer aqui.
+    </div>
+
+    <div class="disclaimer">
+      <h3>🛡️ IA Responsável</h3>
+      <strong>
+        ATENÇÃO:
+      </strong>
+      Este sistema utiliza inteligência artificial para sugerir a possível classificação de cogumelos como
+      comestíveis ou venenosos com base em dados históricos. Ele não substitui a análise de um especialista nem garante
+      a segurança para consumo.
+      <br />
+      Mesmo que o sistema indique um cogumelo como comestível, NÃO o consuma sem confirmação de um especialista
+      qualificado. Erros podem ocorrer e colocar sua saúde em risco.
     </div>
   </main>
 </template>
@@ -244,7 +261,6 @@ label {
   &:first-of-type {
     color: #0b4018;
   }
-
 }
 
 body {
@@ -288,6 +304,7 @@ main.container {
   border: 0.1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   padding: 0rem 3rem;
+  margin-block: 1rem;
   contain: content;
 }
 
@@ -425,6 +442,16 @@ main.container {
   min-height: 2rem;
   text-align: center;
   font-size: 2rem;
+}
+
+.disclaimer {
+  border: 1px solid red;
+  padding: 1rem;
+  margin-block: 3rem;
+
+  strong {
+    color: red;
+  }
 }
 
 @keyframes bounce {
