@@ -4,11 +4,15 @@
 
 ## 📌 Proposta
 
-Este projeto é uma solução de **Machine Learning** para um problema clássico de **classificação**:
+Este projeto é uma solução de **Machine Learning** para um problema de **classificação**:
 
 > **Dadas algumas características físicas de um cogumelo, podemos prever se ele é comestível ou venenoso?**
 
 A aplicação possui uma interface simples para testar diferentes combinações de atributos e avaliar a classificação do modelo treinado.
+
+Vídeo de apresentação:
+
+[![Apresentação de MVP - Posso comer esse cogumelo? | Lucas Araújo Rosas](https://img.youtube.com/vi/ZRZYooK0m2c/0.jpg)](https://www.youtube.com/watch?v=ZRZYooK0m2c)
 
 ---
 
@@ -18,6 +22,7 @@ A aplicação possui uma interface simples para testar diferentes combinações 
 
 MVP-2-Colab/
 ├── backend/           # API Python com Flask para classificação dos cogumelos
+|   └── test           # Dados para teste e o teste do modelo.
 ├── frontend/          # Interface desenvolvida em Vue.js
 ├── mushroom/          # Dados originais utilizados no treinamento
 ├── mushroom.ipynb     # Notebook com o pipeline de treino e exportação do modelo
